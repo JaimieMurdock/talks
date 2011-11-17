@@ -43,7 +43,7 @@ The rise of the cloud --- clusters for everyone
 
 \subsection{Basics}
 \begin{frame}
-\frametitle{MapReduce: A Simple Example}
+\frametitle{Painfully Parallel Problems}
 (or: how to use C211 in an interview)\\
 \pause
 
@@ -61,16 +61,31 @@ Given a function that is both commutative and associative (e.g., $+$ or $*$)\\
 %Map:       & 16 & 12 & 21 & 14 \\
 %Reduce:    & 63 & & & \\
 %\end{tabular}
-
 \end{frame}
 
 \begin{frame}
-\frametitle{Synchronization}
+\frametitle{Architecture}
+\textbf{Flynn's Taxonomy}
+
+SISD -- Single Instruction, Single Data
+(serial execution)
+
+SIMD -- Single Instruction, Multiple Data
+(MMX, SSE, AltiVec, 3dNow!, GPU)
+
+MISD -- Multiple Instruction, Single Data 
+(multiple filters)
+
+MIMD -- Multiple Instruction, Multiple Data
+(true multiprocessing)
+
 \end{frame}
+
 
 
 
 \section{Libraries}
+\subsection{multiprocessing}
 \begin{frame}[fragile]
 \frametitle{Python \texttt{multiprocessing}}
 \begin{minted}[fontsize=\footnotesize]{python}
@@ -79,6 +94,56 @@ p = Pool()                  # initialize process pool
 results = p.map(f, args)    # spawn processes
 p.close()                   # close process pool 
 \end{minted}
+\end{frame}
+
+\subsection{MapReduce}
+\begin{frame}
+\frametitle{MapReduce}
+2004 Google framework\\
+\texttt{\url{http://labs.google.com/papers/mapreduce.html}}\\
+\textbf{APIs}: C++, C\#, Erlang, Java, OCaml, Perl, Python, PHP, Ruby, F\#, R
+
+Six-stage pipeline:
+\begin{itemize}
+  \item input reader
+  \item map function
+  \item partition function
+  \item comparison function
+  \item reduce function
+  \item output writer
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{MapReduce}
+\begin{minted}[fontsize=\footnotesize]{java}
+void map(String name, String document):
+  // name: document name
+  // document: document contents
+  for word in document:
+    EmitIntermediate(word, "1");
+ 
+void reduce(String word, Iterator partialCounts):
+  // word: a word
+  // partialCounts: a list of aggregated partial counts
+  int sum = 0;
+  for pc in partialCounts:
+    sum += ParseInt(pc);
+  Emit(word, AsString(sum));
+\end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Resources}
+\textbf{General}
+\begin{itemize}
+  \item \url{https://computing.llnl.gov/tutorials/parallel_comp/}
+\end{itemize}
+
+\textbf{MapReduce}
+\begin{itemize}
+  \item \url{http://labs.google.com/papers/mapreduce.html}
+\end{itemize}
 \end{frame}
 
 \frame{\tableofcontents}
