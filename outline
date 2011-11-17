@@ -1,0 +1,63 @@
+Practical Parallelism
+Jaimie Murdock
+CS Club Tech Talk
+November 17, 2011
+
+In this talk, I will give a brief overview of several key parallelism concepts
+and practical tools for several languages. After this talk, attendees should
+have the resources to recognize and solve "painfully parallel problems". Topics
+will include: threads vs. processes, Amdahl's Law, shared vs. distributed
+memory, synchronization, locks, pipes, queues, process pools, futures, OpenMP,
+MapReduce, Hadoop, and GPU programming. 
+
+Motivation
+Parallelism is easy, especially w/functional background
+Moving from HPC to mainstream SMP
+- image of consumer processor cores
+The Cloud
+
+Basics
+-------------
+Amdahl's Law
+-- chart
+-- complexity O(n/k)
+
+Simple Examples
+Sum
+Commutative, associative
+    Map        Reduce
+
+Synchronization
+    Locks
+    Deadlock
+
+Shared vs. distributed memory
+    local vs. global
+
+Feeding data
+    Pipes
+    Queues
+
+Process Models
+---------------------
+Threads
+
+Processes
+
+Pools
+
+Libraries
+---------------------
+Futures
+
+OpenMP
+
+Hadoop
+
+MapReduce
+
+GPU Programming
+---------------------
+Memory Models
+
+CUDA and OpenCL
