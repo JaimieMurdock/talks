@@ -63,6 +63,8 @@ Given a function that is both commutative and associative (e.g., $+$ or $*$)\\
 %\end{tabular}
 \end{frame}
 
+% TODO: Insert OpenMP C reduction
+
 \begin{frame}
 \frametitle{Architecture}
 \textbf{Flynn's Taxonomy}
@@ -78,7 +80,6 @@ MISD -- Multiple Instruction, Single Data
 
 MIMD -- Multiple Instruction, Multiple Data
 (true multiprocessing)
-
 \end{frame}
 
 \subsection{Synchronization}
@@ -92,10 +93,15 @@ MIMD -- Multiple Instruction, Multiple Data
 %\end{tabular}
 
 \pause
+Solutions:
+\begin{itemize}
+  \item Barriers
+  \item Locking
+\end{itemize}
 
-Locking
 \end{frame}
 
+% TODO: Insert C example
 
 \begin{frame}[fragile]
 \frametitle{Locks}
@@ -157,6 +163,58 @@ class Account:
 \end{minted}
 \end{frame}
 
+\begin{frame}
+\frametitle{Memory Models}
+\textbf{Shared Memory}
+\begin{itemize}
+  \item Same address space
+  \item Multithreading
+\end{itemize}
+
+\pause
+
+\textbf{Distributed Memory}
+\begin{itemize}
+  \item Different address space
+  \item Cluster computing/HPC
+\end{itemize}
+
+\pause
+
+\textbf{Hybrid Shared-Distributed Memory}
+\begin{itemize}
+  \item Multiprocessing
+  \item GPU Programming
+\end{itemize}
+\end{frame}
+
+% TODO: Insert OpenMP keywords
+
+\begin{frame}
+\frametitle{Threads vs. Processes}
+\textbf{Threads}
+\begin{itemize}
+  \item Shared memory
+  \item Single process (core), multiple execution paths
+  \item Subroutines, GUIs
+  \item Low OS overhead
+  \item Requires synchronization
+  \item POSIX threads, Python \texttt{threading}, Java \texttt{java.lang.Thread}
+\end{itemize}
+
+\textbf{Process}
+\begin{itemize}
+  \item Distributed memory
+  \item Message passing
+  \item High OS overhead
+  \item Only way to utilize multicore or clusters
+\end{itemize}
+
+\end{frame}
+
+
+
+
 \section{Libraries}
 \subsection{Python}
 \begin{frame}[fragile]
@@ -186,6 +244,8 @@ p.close()                   # close process pool
 2004 Google framework\\
 \texttt{\url{http://labs.google.com/papers/mapreduce.html}}\\
 \textbf{APIs}: C++, C\#, Erlang, Java, OCaml, Perl, Python, PHP, Ruby, F\#, R
+
+\pause \bigskip
 
 Six-stage pipeline:
 \begin{itemize}
@@ -230,6 +290,13 @@ void reduce(String word, Iterator partialCounts):
   \item \url{http://docs.python.org/library/multiprocessing.html} \tiny{Python 2.6}
   \item \url{http://docs.python.org/dev/library/concurrent.futures.html} \tiny{Python 3.2}
 \end{itemize}
+
+\textbf{Java}
+\begin{itemize}
+  \item \url{http://download.oracle.com/javase/7/docs/api/java/lang/Thread.html}
+  \item \url{http://download.oracle.com/javase/tutorial/essential/concurrency/}
+\end{itemize}
+
 \textbf{MapReduce}
 \begin{itemize}
   \item \url{http://labs.google.com/papers/mapreduce.html}
