@@ -81,8 +81,42 @@ MIMD -- Multiple Instruction, Multiple Data
 
 \end{frame}
 
+\subsection{Synchronization}
+\begin{frame}
+\frametitle{Synchronization}
+%\begin{tabular}{cc}
+%\textbf{Process 1} & \textbf{Process 2} \\
+%$a = read(A)$    & $a = read(A)$ \\
+%$a = a + 1$      & $b = read(B)$ \\
+%$A = write(a)$   & $A = write(a +b)$
+%\end{tabular}
+
+\pause
+
+Locking
+\end{frame}
 
 
+\begin{frame}[fragile]
+\frametitle{Locks}
+\begin{minted}[fontsize=\footnotesize]{csharp}
+class Account {     // this is a monitor of an account
+  long val = 0;
+ 
+  public void Deposit(const long x) {
+    lock (this) {   // only 1 thread at a time may execute this statement
+      val += x;
+    }
+  }
+ 
+  public void Withdraw(const long x) {
+    lock (this) {
+      val -= x;
+    }
+  }
+}
+\end{minted}
+\end{frame}
 
 \section{Libraries}
 \subsection{multiprocessing}
