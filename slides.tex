@@ -1,0 +1,88 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+
+\usepackage{minted}
+\usepackage{colortbl}
+
+\title{Practical Parallelism}
+\author{Jaimie Murdock}
+\institute[IU COGS]{
+    IU Cognitive Science Program\\
+    810 Eigenmann Hall\\
+    \texttt{jammurdo@indiana.edu}
+    }
+\date{November 17, 2011}
+
+\begin{document}
+% Title Page
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+\section{Introduction}
+\subsection{Motivation}
+\begin{frame}
+\frametitle{Motivation}
+Multiprocessing has moved from HPC-only to SMP
+% TODO: Find chart of intel desktop shipments
+\pause \bigskip
+
+Cores are cheap:
+\tiny{
+\begin{itemize}
+  \item \textbf{2} -- Intel Celeron E3400 -- \$47
+  \item \textbf{4} -- AMD Athlon II X4 631 -- \$90
+  \item \textbf{6} -- AMD Phenom II X6 1035T -- \$135
+  \item \textbf{8} -- AMD FX-8120 -- \$210
+\end{itemize}}
+
+\pause \bigskip
+
+The rise of the cloud --- clusters for everyone
+% TODO: Insert Google App Engine, Amazon Web Services, Microsoft Azure
+\end{frame}
+
+\subsection{Basics}
+\begin{frame}
+\frametitle{MapReduce: A Simple Example}
+(or: how to use C211 in an interview)\\
+\pause
+
+Given a function that is both commutative and associative (e.g., $+$ or $*$)\\
+\pause
+\begin{itemize}
+  \item \textbf{Commutative:} $x + y = y + x$ \\
+  \item \textbf{Associative:} $(x + y) + z = x + (y + z)$
+\end{itemize}
+
+% TODO: fix table
+%$MapReduce(+, 5 6 4 1 4 1 2 5 6 2 7 6 3 4 6 1)$
+%\begin{tabular}[r|cccc]
+%Partition: & 5 6 4 1 & 4 1 2 5 & 6 2 7 6 & 3 4 6 1 \\ 
+%Map:       & 16 & 12 & 21 & 14 \\
+%Reduce:    & 63 & & & \\
+%\end{tabular}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Synchronization}
+\end{frame}
+
+
+
+\section{Libraries}
+\begin{frame}[fragile]
+\frametitle{Python \texttt{multiprocessing}}
+\begin{minted}[fontsize=\footnotesize]{python}
+from multiprocessing import Pool
+p = Pool()                  # initialize process pool
+results = p.map(f, args)    # spawn processes
+p.close()                   # close process pool 
+\end{minted}
+\end{frame}
+
+\frame{\tableofcontents}
+
+\frame{\titlepage}
+
+\end{document}
