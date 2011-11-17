@@ -63,6 +63,13 @@ Given a function that is both commutative and associative (e.g., $+$ or $*$)\\
 %\end{tabular}
 \end{frame}
 
+\begin{frame}
+\frametitle{How fast?}
+\begin{center}
+  \textbf{Amdahl's Law}
+  \includegraphics[width=0.3\textwidth]{img/amdahl2.png} 
+\end{center}
+\end{frame}
 % TODO: Insert OpenMP C reduction
 
 \begin{frame}
@@ -166,13 +173,54 @@ class Account:
 
 \begin{frame}
 \frametitle{Memory Models}
+\begin{columns}
+\begin{column}{.4\textwidth}
+\textbf{Shared Memory}
+\begin{itemize}
+  \item Same address space
+  \item Multithreading
+\end{itemize}
+\end{column}
+
+\begin{column}{.6\textwidth}
+\includegraphics[width=0.5\textwidth]{img/shared_mem.png} 
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Memory Models}
+\begin{columns}
+\begin{column}{.4\textwidth}
 \textbf{Shared Memory}
 \begin{itemize}
   \item Same address space
   \item Multithreading
 \end{itemize}
 
-\pause
+\textbf{Distributed Memory}
+\begin{itemize}
+  \item Different address space
+  \item Cluster computing/HPC
+\end{itemize}
+\end{column}
+
+\begin{column}{.6\textwidth}
+\includegraphics[width=0.5\textwidth]{img/distributed_mem.png} 
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Memory Models}
+\begin{columns}
+\begin{column}{.4\textwidth}
+\textbf{Shared Memory}
+\begin{itemize}
+  \item Same address space
+  \item Multithreading
+\end{itemize}
 
 \textbf{Distributed Memory}
 \begin{itemize}
@@ -180,14 +228,19 @@ class Account:
   \item Cluster computing/HPC
 \end{itemize}
 
-\pause
-
 \textbf{Hybrid Shared-Distributed Memory}
 \begin{itemize}
   \item Multiprocessing
   \item GPU Programming
 \end{itemize}
+\end{column}
+
+\begin{column}{.6\textwidth}
+\includegraphics[width=0.5\textwidth]{img/hybrid_mem.png} 
+\end{column}
+\end{columns}
 \end{frame}
+
 
 % TODO: Insert OpenMP keywords
 
@@ -215,41 +268,24 @@ class Account:
 
 \begin{frame}
 \frametitle{Pipes and Queues}
-\textbf{Pipe}
-\begin{itemize}
-  \item 
-\end{itemize}
-
 \textbf{Queue}
 \begin{itemize}
-  \item  
+  \item Bianry communication of messages
+  \item I/O across processes
+\end{itemize}
+
+\pause
+
+\textbf{Pipe}
+\begin{itemize}
+  \item One-way communication of messages. 
+  \item Useful for handling I/O to multiple processes
 \end{itemize}
 \end{frame}
 
 
 
 \section{Libraries}
-\subsection{Python}
-\begin{frame}[fragile]
-\frametitle{Python \texttt{threading}}
-Inspired by Java's \texttt{Runnable, Thread} classes
-\begin{minted}[fontsize=\footnotesize]{python}
-from threading import Thread
-p = Pool()                  # initialize process pool
-results = p.map(f, args)    # spawn processes
-p.close()                   # close process pool 
-\end{minted}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Python \texttt{multiprocessing}}
-\begin{minted}[fontsize=\footnotesize]{python}
-from multiprocessing import Pool
-p = Pool()                  # initialize process pool
-results = p.map(f, args)    # spawn processes
-p.close()                   # close process pool 
-\end{minted}
-\end{frame}
 
 \subsection{MapReduce}
 \begin{frame}
@@ -290,6 +326,8 @@ void reduce(String word, Iterator partialCounts):
 \end{minted}
 \end{frame}
 
+% TODO: Insert Process Pools and Workers
+
 \subsection{Hadoop}
 \begin{frame}
 \frametitle{Hadoop}
@@ -305,10 +343,36 @@ Rough intuition: open-source implementation of MapReduce, and then some
   \item \textbf{HDFS} -- distributed file system, operates in 64MB chunks.
   \item \textbf{Sharding} -- synonym for partitioning
   \item Bring the application to the data to reduce bandwidth
-  \item \textbf{JobTracker} server takes MapReduce job requests to available \textbf{TaskTracker} nodes. (Essentially a process pool!)
+  \item \textbf{JobTracker} server takes MapReduce job requests to available \textbf{TaskTracker} nodes. (FIFO process pool!)
 \end{itemize}
 
 %TODO: Insert node diagram
+\end{frame}
+
+% TODO: Bandwidth
+
+% TODO: GPU Programming
+
+\subsection{Python}
+\begin{frame}[fragile]
+\frametitle{Python \texttt{threading}}
+Inspired by Java's \texttt{Runnable, Thread} classes
+\begin{minted}[fontsize=\footnotesize]{python}
+from threading import Thread
+p = Pool()                  # initialize process pool
+results = p.map(f, args)    # spawn processes
+p.close()                   # close process pool 
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Python \texttt{multiprocessing}}
+\begin{minted}[fontsize=\footnotesize]{python}
+from multiprocessing import Pool
+p = Pool()                  # initialize process pool
+results = p.map(f, args)    # spawn processes
+p.close()                   # close process pool 
+\end{minted}
 \end{frame}
 
 \begin{frame}
@@ -335,6 +399,13 @@ Rough intuition: open-source implementation of MapReduce, and then some
 \begin{itemize}
   \item \url{http://labs.google.com/papers/mapreduce.html}
   \item \url{http://hadoop.apache.org/}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{More Resources}
+\begin{itemize}
+  \item
 \end{itemize}
 \end{frame}
 
