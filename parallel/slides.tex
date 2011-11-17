@@ -97,6 +97,7 @@ Solutions:
 \begin{itemize}
   \item Barriers
   \item Locking
+  \item Semaphores
 \end{itemize}
 
 \end{frame}
@@ -212,6 +213,18 @@ class Account:
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Pipes and Queues}
+\textbf{Pipe}
+\begin{itemize}
+  \item 
+\end{itemize}
+
+\textbf{Queue}
+\begin{itemize}
+  \item  
+\end{itemize}
+\end{frame}
 
 
 
@@ -277,6 +290,27 @@ void reduce(String word, Iterator partialCounts):
 \end{minted}
 \end{frame}
 
+\subsection{Hadoop}
+\begin{frame}
+\frametitle{Hadoop}
+% TODO: Insert logo
+Rough intuition: open-source implementation of MapReduce, and then some
+\texttt{\url{http://hadoop.apache.org/}} \\
+
+\pause
+\bigskip
+\textbf{The Big Concepts}
+\begin{itemize}
+  \item \textbf{JVM} -- Implemented in Java, commonly used with Clojure and Scala
+  \item \textbf{HDFS} -- distributed file system, operates in 64MB chunks.
+  \item \textbf{Sharding} -- synonym for partitioning
+  \item Bring the application to the data to reduce bandwidth
+  \item \textbf{JobTracker} server takes MapReduce job requests to available \textbf{TaskTracker} nodes. (Essentially a process pool!)
+\end{itemize}
+
+%TODO: Insert node diagram
+\end{frame}
+
 \begin{frame}
 \frametitle{Resources}
 \textbf{General}
@@ -300,6 +334,7 @@ void reduce(String word, Iterator partialCounts):
 \textbf{MapReduce}
 \begin{itemize}
   \item \url{http://labs.google.com/papers/mapreduce.html}
+  \item \url{http://hadoop.apache.org/}
 \end{itemize}
 \end{frame}
 
