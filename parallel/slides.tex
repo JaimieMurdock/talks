@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[t]{beamer}
 \usetheme{CambridgeUS}
 
 \usepackage{minted}
@@ -41,7 +41,15 @@ The rise of the cloud --- clusters for everyone
 % TODO: Insert Google App Engine, Amazon Web Services, Microsoft Azure
 \end{frame}
 
-\subsection{Basics}
+\begin{frame}
+\frametitle{How fast?}
+\begin{center}
+  \textbf{Amdahl's Law} \\
+  \includegraphics[width=0.7\textwidth]{img/amdahl2.png} 
+\end{center}
+\end{frame}
+
+\subsection{Basics}[fragile]
 \begin{frame}
 \frametitle{Painfully Parallel Problems}
 (or: how to use C211 in an interview)\\
@@ -56,50 +64,106 @@ Given a function that is both commutative and associative (e.g., $+$ or $*$)\\
 
 % TODO: fix table
 %$MapReduce(+, 5 6 4 1 4 1 2 5 6 2 7 6 3 4 6 1)$
-%\begin{tabular}[r|cccc]
-%Partition: & 5 6 4 1 & 4 1 2 5 & 6 2 7 6 & 3 4 6 1 \\ 
-%Map:       & 16 & 12 & 21 & 14 \\
-%Reduce:    & 63 & & & \\
-%\end{tabular}
+\begin{tabular}{rcccc}
+Partition: & 5 6 4 1 & 4 1 2 5 & 6 2 7 6 & 3 4 6 1 \\ 
+Map:       & 16 & 12 & 21 & 14 \\
+Reduce:    & 63 & & & \\
+\end{tabular}
 \end{frame}
 
+% TODO: Insert OpenMP C reduction
+
 \begin{frame}
-\frametitle{How fast?}
+\frametitle{Painfully Parallel Problems}
 \begin{center}
-  \textbf{Amdahl's Law}
-  \includegraphics[width=0.3\textwidth]{img/amdahl2.png} 
+  \includegraphics[width=0.7\textwidth]{img/array.png} 
 \end{center}
 \end{frame}
-% TODO: Insert OpenMP C reduction
+
+
+\begin{frame}
+\frametitle{Painfully Parallel Problems}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{img/problems.png} 
+\end{center}
+\end{frame}
 
 \begin{frame}
 \frametitle{Architecture}
 \textbf{Flynn's Taxonomy}
+\begin{itemize}
+\item SISD -- Single Instruction, Single Data
+\end{itemize}
 
-SISD -- Single Instruction, Single Data
-(serial execution)
-
-SIMD -- Single Instruction, Multiple Data
-(MMX, SSE, AltiVec, 3dNow!, GPU)
-
-MISD -- Multiple Instruction, Single Data 
-(multiple filters)
-
-MIMD -- Multiple Instruction, Multiple Data
-(true multiprocessing)
+\begin{center}
+\includegraphics[width=0.3\textwidth]{img/sisd.png} 
+\end{center}
 \end{frame}
 
+\begin{frame}
+\frametitle{Architecture}
+\textbf{Flynn's Taxonomy}
+\begin{itemize}
+\item SISD -- Single Instruction, Single Data
+
+\item SIMD -- Single Instruction, Multiple Data
+%\footnotesize{MMX, SSE, AltiVec, 3dNow!, GPU}
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{img/simd.png} 
+\end{center}
+\end{frame}
+\begin{frame}
+\frametitle{Architecture}
+\textbf{Flynn's Taxonomy}
+\begin{itemize}
+\item SISD -- Single Instruction, Single Data
+
+\item SIMD -- Single Instruction, Multiple Data
+%\footnotesize{MMX, SSE, AltiVec, 3dNow!, GPU}
+
+\item MISD -- Multiple Instruction, Single Data 
+%\footnotesize{multiple filters}
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{img/misd.png} 
+\end{center}
+\end{frame}
+\begin{frame}
+\frametitle{Architecture}
+\textbf{Flynn's Taxonomy}
+\begin{itemize}
+\item SISD -- Single Instruction, Single Data
+
+\item SIMD -- Single Instruction, Multiple Data
+%\footnotesize{MMX, SSE, AltiVec, 3dNow!, GPU}
+
+\item MISD -- Multiple Instruction, Single Data 
+%\footnotesize{multiple filters}
+
+\item MIMD -- Multiple Instruction, Multiple Data
+%\footnotesize{true multiprocessing}
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{img/mimd.png} 
+\end{center}
+\end{frame}
 \subsection{Synchronization}
 \begin{frame}
 \frametitle{Synchronization}
-%\begin{tabular}{cc}
-%\textbf{Process 1} & \textbf{Process 2} \\
-%$a = read(A)$    & $a = read(A)$ \\
-%$a = a + 1$      & $b = read(B)$ \\
-%$A = write(a)$   & $A = write(a +b)$
-%\end{tabular}
+\begin{tabular}{cc}
+\textbf{Process 1} & \textbf{Process 2} \\
+$a = read(A)$    & $a = read(A)$ \\
+$a = a + 1$      & $b = read(B)$ \\
+$A = write(a)$   & $A = write(a +b)$
+\end{tabular}
 
 \pause
+\bigskip
+
 Solutions:
 \begin{itemize}
   \item Barriers
@@ -108,6 +172,7 @@ Solutions:
 \end{itemize}
 
 \end{frame}
+
 
 % TODO: Insert C example
 
@@ -183,7 +248,9 @@ class Account:
 \end{column}
 
 \begin{column}{.6\textwidth}
-\includegraphics[width=0.5\textwidth]{img/shared_mem.png} 
+\begin{center}
+\includegraphics[width=0.8\textwidth]{img/shared_mem.png} 
+\end{center}
 \end{column}
 \end{columns}
 \end{frame}
@@ -207,7 +274,9 @@ class Account:
 \end{column}
 
 \begin{column}{.6\textwidth}
-\includegraphics[width=0.5\textwidth]{img/distributed_mem.png} 
+\begin{center}
+\includegraphics[width=1.0\textwidth]{img/distributed_mem.png} 
+\end{center}
 \end{column}
 \end{columns}
 \end{frame}
@@ -236,7 +305,9 @@ class Account:
 \end{column}
 
 \begin{column}{.6\textwidth}
-\includegraphics[width=0.5\textwidth]{img/hybrid_mem.png} 
+\begin{center}
+\includegraphics[width=1.0\textwidth]{img/hybrid_mem.png} 
+\end{center}
 \end{column}
 \end{columns}
 \end{frame}
@@ -332,36 +403,79 @@ void reduce(String word, Iterator partialCounts):
 \begin{frame}
 \frametitle{Hadoop}
 % TODO: Insert logo
-Rough intuition: open-source implementation of MapReduce, and then some
-\texttt{\url{http://hadoop.apache.org/}} \\
-
-\pause
-\bigskip
+\begin{columns}
+\begin{column}{.5\textwidth}
 \textbf{The Big Concepts}
-\begin{itemize}
-  \item \textbf{JVM} -- Implemented in Java, commonly used with Clojure and Scala
-  \item \textbf{HDFS} -- distributed file system, operates in 64MB chunks.
-  \item \textbf{Sharding} -- synonym for partitioning
-  \item Bring the application to the data to reduce bandwidth
-  \item \textbf{JobTracker} server takes MapReduce job requests to available \textbf{TaskTracker} nodes. (FIFO process pool!)
-\end{itemize}
+\small{\begin{itemize}
 
-%TODO: Insert node diagram
+  \item \textbf{JVM} -- Implemented in Java, commonly used with Clojure and Scala
+  \pause
+  \item \textbf{HDFS} -- distributed file system, operates in 64MB chunks.
+  \pause
+  \item \textbf{Sharding} -- Partitioning. Bring the application to the data to reduce bandwidth
+  \pause
+  \item \textbf{JobTracker} server takes MapReduce job requests to available \textbf{TaskTracker} nodes. (FIFO process pool!)
+\end{itemize}}
+\end{column}
+\begin{column}{.5\textwidth}
+\includegraphics[width=1.0\textwidth]{img/Hadoop_1.png} 
+\end{column}
+\end{columns}
 \end{frame}
 
 % TODO: Bandwidth
 
 % TODO: GPU Programming
+\begin{frame}
+\frametitle{GPU Programming}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{img/array.png} 
+\end{center}
+\end{frame}
 
 \subsection{Python}
 \begin{frame}[fragile]
-\frametitle{Python \texttt{threading}}
-Inspired by Java's \texttt{Runnable, Thread} classes
+\frametitle{QT\_Clust}
+\begin{minted}[fontsize=\footnotesize]{c}
+    // Calculating Distances
+    float d; float* D;
+    for (i = 0; i < POPSIZE; i++) {
+        D = dists[i];
+
+        #pragma omp parallel for shared(D, i, dists) private(d, j)
+        for (j = i+1; j < POPSIZE; j++) {
+            d = distance(i, j);
+            D[j] = d;
+        }
+        
+        D[i] = 0.0;
+        
+        #pragma omp parallel for shared(D, i, dists) private(d, j)
+        for (j = 0; j < i; j++) {
+            d = dists[j][i];
+            D[j] = d;
+        }
+    }
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{QT\_Clust}
 \begin{minted}[fontsize=\footnotesize]{python}
-from threading import Thread
-p = Pool()                  # initialize process pool
-results = p.map(f, args)    # spawn processes
-p.close()                   # close process pool 
+def qt_clust(thresh, population):
+    while population:
+        # build candidate clusters
+        for x in population:
+            x.build_cluster(population, thresh)
+    
+        # select the largest candidate cluster
+        candidate = max(population, key=lambda x: len(x.cluster))
+  
+        # remove elements from the population
+        for x in candidate.cluster:
+            population.remove(x)
+    
+        yield candidate
 \end{minted}
 \end{frame}
 
