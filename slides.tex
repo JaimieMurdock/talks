@@ -99,6 +99,7 @@ Locking
 
 \begin{frame}[fragile]
 \frametitle{Locks}
+\textbf{C\#}
 \begin{minted}[fontsize=\footnotesize]{csharp}
 class Account {     // this is a monitor of an account
   long val = 0;
@@ -118,8 +119,57 @@ class Account {     // this is a monitor of an account
 \end{minted}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Locks}
+\textbf{Java}
+\begin{minted}[fontsize=\footnotesize]{java}
+class Account {     // this is a monitor of an account
+  int val = 0;
+ 
+  public synchronized void Deposit(int x) {
+    val += x;
+  }
+ 
+  public synchronized void Withdraw(int x) {
+    val -= x;
+  }
+}
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Locks}
+\textbf{Python}
+\begin{minted}[fontsize=\footnotesize]{python}
+from threading import Lock
+class Account:
+    def __init__(self, value):
+        self.value = value
+        self.lock = Lock()
+
+    def deposit(x):
+        with self.lock:
+            self.value += x
+
+    def withdraw(x):
+        with self.lock:
+            self.value -= x
+\end{minted}
+\end{frame}
+
 \section{Libraries}
-\subsection{multiprocessing}
+\subsection{Python}
+\begin{frame}[fragile]
+\frametitle{Python \texttt{threading}}
+Inspired by Java's \texttt{Runnable, Thread} classes
+\begin{minted}[fontsize=\footnotesize]{python}
+from threading import Thread
+p = Pool()                  # initialize process pool
+results = p.map(f, args)    # spawn processes
+p.close()                   # close process pool 
+\end{minted}
+\end{frame}
+
 \begin{frame}[fragile]
 \frametitle{Python \texttt{multiprocessing}}
 \begin{minted}[fontsize=\footnotesize]{python}
@@ -174,6 +224,12 @@ void reduce(String word, Iterator partialCounts):
   \item \url{https://computing.llnl.gov/tutorials/parallel_comp/}
 \end{itemize}
 
+\textbf{Python}
+\begin{itemize}
+  \item \url{http://docs.python.org/library/threading.html}
+  \item \url{http://docs.python.org/library/multiprocessing.html} \tiny{Python 2.6}
+  \item \url{http://docs.python.org/dev/library/concurrent.futures.html} \tiny{Python 3.2}
+\end{itemize}
 \textbf{MapReduce}
 \begin{itemize}
   \item \url{http://labs.google.com/papers/mapreduce.html}
