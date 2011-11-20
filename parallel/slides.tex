@@ -433,52 +433,41 @@ void reduce(String word, Iterator partialCounts):
 \end{center}
 \end{frame}
 
-\subsection{Python}
+\begin{frame}
+\frametitle{GPU Memory Model}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{img/OpenCLMemory.png} 
+\end{center}
+\end{frame}
+
+\section{Examples}
+\subsection{OpenMP}
 \begin{frame}[fragile]
-\frametitle{Upper Triangular Matrix}
+\frametitle{OpenMP: Upper Triangular Matrix}
 \begin{minted}[fontsize=\footnotesize]{c}
-    // Calculating Distances
-    float d; float* D;
-    for (i = 0; i < POPSIZE; i++) {
-        D = dists[i];
+// Calculating Distances
+float d; float* D;
+for (i = 0; i < POPSIZE; i++) {
+    D = dists[i];
 
-        #pragma omp parallel for shared(D, i, dists) private(d, j)
-        for (j = i+1; j < POPSIZE; j++) {
-            d = distance(i, j);
-            D[j] = d;
-        }
-        
-        D[i] = 0.0;
-        
-        #pragma omp parallel for shared(D, i, dists) private(d, j)
-        for (j = 0; j < i; j++) {
-            d = dists[j][i];
-            D[j] = d;
-        }
+    #pragma omp parallel for shared(D, i, dists) private(d, j)
+    for (j = i+1; j < POPSIZE; j++) {
+        d = distance(i, j);
+        D[j] = d;
     }
+    
+    D[i] = 0.0;
+    
+    #pragma omp parallel for shared(D, i, dists) private(d, j)
+    for (j = 0; j < i; j++) {
+        d = dists[j][i];
+        D[j] = d;
+    }
+}
 \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{QT\_Clust}
-\begin{minted}[fontsize=\footnotesize]{python}
-def qt_clust(thresh, population):
-    while population:
-        # build candidate clusters
-        for x in population:
-            x.build_cluster(population, thresh)
-    
-        # select the largest candidate cluster
-        candidate = max(population, key=lambda x: len(x.cluster))
-  
-        # remove elements from the population
-        for x in candidate.cluster:
-            population.remove(x)
-    
-        yield candidate
-\end{minted}
-\end{frame}
-
+\subsection{Python}
 \begin{frame}[fragile]
 \frametitle{Python \texttt{multiprocessing}}
 \begin{minted}[fontsize=\footnotesize]{python}
@@ -489,6 +478,7 @@ p.close()                   # close process pool
 \end{minted}
 \end{frame}
 
+\section{Resources}
 \begin{frame}
 \frametitle{Resources}
 \textbf{General}
