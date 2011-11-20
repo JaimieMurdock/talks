@@ -403,11 +403,9 @@ void reduce(String word, Iterator partialCounts):
 \begin{frame}
 \frametitle{Hadoop}
 % TODO: Insert logo
-\begin{columns}
-\begin{column}{.5\textwidth}
 \textbf{The Big Concepts}
-\small{\begin{itemize}
-
+\medskip
+\begin{itemize}
   \item \textbf{JVM} -- Implemented in Java, commonly used with Clojure and Scala
   \pause
   \item \textbf{HDFS} -- distributed file system, operates in 64MB chunks.
@@ -415,12 +413,15 @@ void reduce(String word, Iterator partialCounts):
   \item \textbf{Sharding} -- Partitioning. Bring the application to the data to reduce bandwidth
   \pause
   \item \textbf{JobTracker} server takes MapReduce job requests to available \textbf{TaskTracker} nodes. (FIFO process pool!)
-\end{itemize}}
-\end{column}
-\begin{column}{.5\textwidth}
-\includegraphics[width=1.0\textwidth]{img/Hadoop_1.png} 
-\end{column}
-\end{columns}
+\end{itemize}
+\end{frame}
+
+% TODO: Fix the column issue so this is on the right side of the previous slide...
+\begin{frame}
+\frametitle{Hadoop}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{img/Hadoop_1.png} 
+\end{center}
 \end{frame}
 
 % TODO: Bandwidth
@@ -436,7 +437,7 @@ void reduce(String word, Iterator partialCounts):
 \begin{frame}
 \frametitle{GPU Memory Model}
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{img/OpenCLMemory.png} 
+  \includegraphics[width=0.5\textwidth]{img/OpenCLMemory.png} 
 \end{center}
 \end{frame}
 
