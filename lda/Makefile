@@ -12,6 +12,6 @@ $(LATEXFILE).pdf : $(LATEXFILE).tex
 
 clean :
 	rm -f *.dvi *.bbl *.aux *.log *.blg *.toc *.nav *.out *.pyg *.snm
-	rm $(LATEXFILE).pdf
-	rm lda.pdf
-	rm lda.pdf_tex
+	rm -f $(LATEXFILE).pdf
+	rm -f lda.pdf
+	rm -f lda.pdf_tex

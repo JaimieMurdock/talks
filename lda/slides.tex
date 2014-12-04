@@ -28,6 +28,7 @@
 \item Variety of statistical and ML methods for dimensionality reduction.
 \item Evaluating through log-likelihood estimation.
 \item Evaluating through second-order ML: categorization over feature vectors.
+\end{itemize}
 \end{frame}
 
 \subsection{VSM}
@@ -263,17 +264,23 @@ $\alpha = (6,2,2), (3,7,5), (6,2,6), (2,3,4)$
 \begin{frame}
 \frametitle{Results}
 \textbf{Pending!}
-\begin{tabular}[r|cccc]
+\bigskip
+\begin{tabular}{r|cccc}
 Model   & LL & DT   & Bayes  & Log \\ \hline
-Yelp    &    &      &        & \\
+Yelp    &     &      &        & \\
 Usenet  &     &      &        & \\
 SEP     &     &      &        & 
 \end{tabular}
-\textit{Multiple levels: k=cats, k=2*cats, k=5*cats}
+\pause \bigskip
+\textit{Multiple levels:} k=cats, k=2*cats, k=5*cats \\
+\textit{Corpus cleanup:} no-stop, nltk, low-freq, hi-freq
 \end{frame}
 
 \begin{frame}
 \frametitle{Bias-Variance}
+
+\includegraphics[width=0.8\textwidth]{img/darwin-ll.png}
+
 \end{frame}
 
 
